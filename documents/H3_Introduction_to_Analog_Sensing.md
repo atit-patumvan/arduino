@@ -69,12 +69,12 @@ This activity demonstrates how to control a relay based on the light intensity m
 
 ### Circuit Setup:
 1. Connect one leg of the photoresistor to 5V on the breadboard.
-2. Connect the other leg to an analog pin (e.g., A0) on the Arduino and to GND through a 10kΩ resistor.
+2. Connect the other leg to an analog pin (e.g., A1) on the Arduino and to GND through a 10kΩ resistor.
 3. Connect the control pin of the relay module to a digital pin (e.g., pin 8) on the Arduino.
 
 ### Code:
 ```c
-const int ldrPin = A0; // Pin where the photoresistor is connected
+const int ldrPin = A1; // Pin where the photoresistor is connected
 const int relayPin = 8; // Pin where the relay is connected
 
 void setup() {
