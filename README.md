@@ -17,7 +17,7 @@ This 6-hour course introduces the basics of Arduino, focusing on control and sen
 
 ## Course Outline:
 
-### Hour 1: Getting Started with Arduino
+### [Hour 1: Getting Started with Arduino](documents/H1_Getting_Started_with_Arduino.md)
 - What is Arduino?
 - Types of Arduino boards
 - Key components (microcontroller, power supply, I/O pins)
