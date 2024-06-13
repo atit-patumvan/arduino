@@ -70,12 +70,11 @@ This 6-hour course introduces the basics of Arduino, focusing on control and sen
 - Resistors
 - Switches
 - Potentiometers
-- DHT11 sensor
+- DHT11 or DHT22 sensor
 - Photoresistor
 - Relay module
 - Servo motor
 - LCD 1602 I2C display
-- Stepper motor and driver
 - IR remote control and receiver
 - Jumper wires
 - Computer with Arduino IDE
