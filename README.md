@@ -1,5 +1,5 @@
 
-# Course Title: Introduction to Arduino: Basics of Control and Sensing
+# Introduction to Arduino: Basics of Control and Sensing
 
 ## Course Overview:
 This 6-hour course introduces the basics of Arduino, focusing on control and sensing applications. It includes hands-on activities to help learners use Arduino to control devices and read sensor data.
