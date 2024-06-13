@@ -1,75 +1,61 @@
 
 # Advanced Topics and Project Showcase
 
-## Controlling a Stepper Motor using an IR Remote Control
-In this section, you will learn how to control a stepper motor using an IR remote control. This involves reading the IR signal and using it to drive the stepper motor.
+## Using an IR Remote Control
+In this section, you will learn how to use an IR remote control to send commands to your Arduino. This involves reading the IR signal and using it to perform actions based on the received commands.
 
 ### Components Needed:
-- 1 x Stepper motor and driver
 - 1 x IR remote control
 - 1 x IR receiver module
 - Jumper wires
 
 ### Circuit Setup:
-1. Connect the stepper motor to the driver module.
-2. Connect the driver module to the Arduino:
-   - Step pin to digital pin (e.g., pin 3)
-   - Direction pin to digital pin (e.g., pin 4)
-   - Enable pin to digital pin (e.g., pin 5)
-   - VCC to 5V
-   - GND to GND
-3. Connect the IR receiver module:
+1. Connect the IR receiver module:
    - VCC to 5V
    - GND to GND
    - Signal pin to digital pin (e.g., pin 2)
 
 ### Code Example:
 1. Install the IRremote library.
-2. Use the following code to read the IR signal and control the stepper motor:
+2. Use the following code to read the IR signal and display the received commands in the Serial Monitor:
 
 ```c
 #include <IRremote.h>
-#include <AccelStepper.h>
 
-const int RECV_PIN = 2;
-IRrecv irrecv(RECV_PIN);
-decode_results results;
+#define PIN_RECEIVER 2   // Signal Pin of IR receiver
 
-AccelStepper stepper(1, 3, 4); // 1 = Driver, 3 = Step pin, 4 = Direction pin
+IRrecv receiver(PIN_RECEIVER);
 
-void setup() {
+void setup()
+{
   Serial.begin(9600);
-  irrecv.enableIRIn(); // Start the receiver
-  stepper.setMaxSpeed(1000);
-  stepper.setAcceleration(500);
+  receiver.enableIRIn(); // Start the receiver
 }
 
-void loop() {
-  if (irrecv.decode(&results)) {
-    Serial.println(results.value, HEX);
-    if (results.value == 0xFFA25D) { // Replace with your IR remote code
-      stepper.moveTo(stepper.currentPosition() + 200);
-    }
-    if (results.value == 0xFF629D) { // Replace with your IR remote code
-      stepper.moveTo(stepper.currentPosition() - 200);
-    }
-    irrecv.resume(); // Receive the next value
+void loop()
+{
+  // Checks if an IR signal is received
+  if (receiver.decode()) {
+    translateIR();
+    receiver.resume();  // Receive the next value
   }
-  stepper.run();
+}
+
+void translateIR()
+{
+  // Takes action based on the received IR code
+  Serial.println(receiver.decodedIRData.command);
 }
 ```
 
 ### Explanation:
 - **IRremote.h:** Include the IR remote library.
-- **AccelStepper.h:** Include the stepper motor library.
-- **IRrecv irrecv(RECV_PIN);**: Initialize the IR receiver.
-- **AccelStepper stepper(1, 3, 4);**: Initialize the stepper motor (driver type, step pin, direction pin).
-- **irrecv.enableIRIn();**: Start the IR receiver.
-- **stepper.setMaxSpeed(1000);**: Set the maximum speed for the stepper motor.
-- **stepper.setAcceleration(500);**: Set the acceleration for the stepper motor.
-- **irrecv.decode(&results);**: Decode the incoming IR signal.
-- **stepper.moveTo(stepper.currentPosition() + 200);**: Move the stepper motor forward.
-- **stepper.moveTo(stepper.currentPosition() - 200);**: Move the stepper motor backward.
+- **IRrecv receiver(PIN_RECEIVER);**: Initialize the IR receiver on the specified pin.
+- **receiver.enableIRIn();**: Start the IR receiver.
+- **receiver.decode();**: Check if an IR signal is received.
+- **translateIR();**: Function to handle the received IR signal.
+- **receiver.resume();**: Prepare to receive the next IR signal.
+- **receiver.decodedIRData.command;**: Get the command from the received IR signal.
 
 ## Project Showcase
 This is an opportunity for participants to present their projects and demonstrate what they have learned. Each participant will explain their project, the components used, and the code they wrote.
