@@ -56,7 +56,7 @@ This 6-hour course introduces the basics of Arduino, focusing on control and sen
   - Controlling a servo motor
 
 ### [Hour 6: Advanced Topics and Project Showcase](documents/H6_Advanced_Topics_and_Project_Showcase.md)
-- Controlling a stepper motor using an IR remote control
+- Using an IR Remote Control
 - Project showcase
   - Participants present their projects
   - Q&A and troubleshooting
